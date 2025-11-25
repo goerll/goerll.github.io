@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Estevão Goerll, projects, projetos">
+    <meta name="description" content="Projetos de Estevão Goerll">
+    <title>Estevão Goerll | Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'midnight': '#0f172a',
+                        'dark-bg': '#10100E',
+                        'dark-border': '#30302B',
+                        'cream': '#FFFFE3',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Dark mode toggle - load preference or default to dark
+        if (localStorage.theme === 'light' || (!('theme' in localStorage))) {
+            document.documentElement.classList.remove('dark')
+        } else {
+            document.documentElement.classList.add('dark')
+        }
+    </script>
+</head>
+
+<body class="bg-cream dark:bg-dark-bg">
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="theme-toggle"
+        class="fixed top-6 right-6 z-50 p-2 rounded-lg bg-dark-bg bg-opacity-60 backdrop-blur-xl border border-dark-border hover:bg-dark-border transition"
+        onclick="toggleTheme()">
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-cream" fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+            </path>
+        </svg>
+    </button>
+
+    <script>
+        // Show appropriate icon based on current theme
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.theme === 'light') {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        function toggleTheme() {
+            const currentTheme = localStorage.theme;
+
+            if (currentTheme === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeToggleLightIcon.classList.add('hidden');
+                themeToggleDarkIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeToggleDarkIcon.classList.add('hidden');
+                themeToggleLightIcon.classList.remove('hidden');
+            }
+        }
+
+        // Default to dark mode if no preference is set
+        if (!('theme' in localStorage)) {
+            localStorage.theme = 'dark';
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <main class="flex min-h-screen flex-col justify-center items-center p-8 md:p-24">
+        <div class="flex flex-col gap-4 md:gap-12 max-w-3xl w-full">
+
+            <!-- Breadcrumb Navigation (Desktop) -->
+            <div class="hidden md:flex">
+                <nav aria-label="breadcrumb">
+                    <ol class="flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5">
+                        <li class="inline-flex items-center gap-1.5 transition ease-in-out hover:scale-110">
+                            <a class="transition-colors text-slate-600 hover:text-slate-400 dark:text-cream" href="/">
+                                home
+                            </a>
+                        </li>
+                        <li class="text-slate-600 dark:text-cream dark:text-opacity-70 text-lg">/</li>
+                        <li class="inline-flex items-center gap-1.5 transition ease-in-out hover:scale-110">
+                            <a class="transition-colors text-slate-600 dark:text-cream dark:text-opacity-70 hover:text-slate-400"
+                                href="/projects.html">
+                                projects
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                class="flex items-center justify-center rounded-md text-sm font-medium h-10 w-10 md:hidden hover:bg-slate-200 dark:hover:bg-slate-800 transition"
+                type="button" onclick="window.location.href='/'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-slate-700 dark:text-cream dark:text-opacity-70">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Projects Content -->
+            <div class="flex flex-col gap-6 md:gap-10 w-full">
+
+                <!-- Projects Section -->
+                <div class="flex flex-col gap-5">
+                    <div class="text-3xl font-bold text-slate-700 dark:text-cream">
+                        projects
+                    </div>
+
+                    <div class="flex flex-col gap-4">
+
+                        <!-- Category: Featured Projects -->
+                        <div class="flex flex-col gap-4">
+                            <div class="text-xl font-semibold text-slate-600 dark:text-cream mt-4 first:mt-0">
+                                side projects
+                            </div>
+
+                            <!-- Project Item 1 -->
+                            <div class="flex flex-col gap-4">
+                                <div class="flex flex-row gap-4 items-center">
+                                    <!-- Project Icon -->
+                                    <div class="relative h-12 aspect-square">
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            <div
+                                                class="relative w-full h-full rounded-lg shadow-lg shadow-slate-200 dark:shadow-black transition hover:scale-110 ease-in-out overflow-hidden bg-gradient-to-br from-pink-500/80 via-purple-600/80 to-blue-500/80">
+                                                <a href="https://drawtomata.com" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    <img alt="Drawtomata logo"
+                                                        class="bg-white rounded-lg shadow-lg shadow-slate-200 dark:shadow-black transition hover:scale-110 ease-in-out object-contain w-full h-full p-1"
+                                                        src="/assets/drawtomata_logo.png" />
+                                                </a>
+                                            </div>
+                                    </div>
+
+                                    <!-- Project Info -->
+                                    <div class="flex flex-col w-full">
+                                        <div class="flex flex-row gap-4 justify-between items-baseline w-full">
+                                            <div class="flex flex-row items-center gap-3 w-full justify-between">
+                                                <div class="flex flex-row items-center gap-2 flex-wrap">
+                                                    <a class="text-slate-700 dark:text-cream dark:text-opacity-85 font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-blue-500 dark:hover:text-blue-400"
+                                                        href="https://drawtomata.com" target="_blank"
+                                                        rel="noopener noreferrer">
+                                                        Drawtomata
+                                                    </a>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-2">
+                                                    <div class="flex flex-row gap-1.5 flex-wrap items-center">
+                                                        <a href="https://drawtomata.com" target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            class="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3"
+                                                                fill="none" stroke="currentColor" stroke-width="2"
+                                                                viewBox="0 0 24 24">
+                                                                <path
+                                                                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71">
+                                                                </path>
+                                                                <path
+                                                                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71">
+                                                                </path>
+                                                            </svg>
+                                                            <span>drawtomata.com</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="text-slate-500 dark:text-cream dark:text-opacity-80 text-sm sm:text-base">
+                                            Internet's most feature full formal automata simulator for study of
+                                            computation theory.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Category: Side Projects -->
+                        <div class="flex flex-col gap-4">
+                            <div class="text-xl font-semibold text-slate-600 dark:text-cream mt-4 first:mt-0">
+                                open source contributions
+                            </div>
+
+                            <!-- Side Project Item -->
+                            <div class="flex flex-col gap-4">
+                                <div class="flex flex-row gap-4 items-center">
+                                    <div class="relative h-12 aspect-square">
+                                        <a href="https://github.com/krahets/hello-algo" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <img alt="Hello Algo logo"
+                                                class="bg-white rounded-lg shadow-lg shadow-slate-200 dark:shadow-black transition hover:scale-110 ease-in-out object-contain w-full h-full p-1"
+                                                src="/assets/hello_algo.png" />
+                                        </a>
+                                    </div>
+
+                                    <div class="flex flex-col w-full">
+                                        <div class="flex flex-row gap-4 justify-between items-baseline w-full">
+                                            <div class="flex flex-row items-center gap-3 w-full justify-between">
+                                                <div class="flex flex-row items-center gap-2 flex-wrap">
+                                                    <a class="text-slate-700 dark:text-cream dark:text-opacity-85 font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-blue-500 dark:hover:text-blue-400"
+                                                        href="https://github.com/krahets/hello-algo" target="_blank"
+                                                        rel="noopener noreferrer">
+                                                        Hello Algo
+                                                    </a>
+                                                </div>
+                                                <div class="flex flex-row items-center gap-2">
+                                                    <div class="flex flex-row gap-1.5 flex-wrap items-center">
+                                                        <div
+                                                            class="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3"
+                                                                fill="currentColor" viewBox="0 0 24 24">
+                                                                <polygon
+                                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                </polygon>
+                                                            </svg>
+                                                            <span>119k</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="text-slate-500 dark:text-cream dark:text-opacity-80 text-sm sm:text-base">
+                                            Enhanced explanation of AVL binary trees.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
