@@ -33,7 +33,7 @@ export default function WorkPage() {
                       alt="Mouts TI logo"
                       src="/assets/mouts_logo.jpg"
                       fill
-                      className="rounded-lg shadow-lg transition hover:scale-110 ease-in-out object-cover"
+                      className="border shadow-sm transition hover:scale-110 ease-in-out object-cover"
                     />
                   </div>
                   <div className="flex flex-col w-full">
@@ -63,7 +63,7 @@ export default function WorkPage() {
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-row gap-4 items-center">
-                  <div className="relative h-12 aspect-square bg-white rounded-lg p-2">
+                  <div className="relative h-12 aspect-square bg-white border p-2">
                     <Image
                       alt="IFC logo"
                       src="/assets/ifc_logo.png"

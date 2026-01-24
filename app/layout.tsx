@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
+const paperMono = localFont({
+  src: "../fonts/PaperMono-Regular.otf",
   variable: "--font-mono",
 });
 
@@ -26,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${robotoMono.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
+        className={`${paperMono.variable} font-mono antialiased min-h-screen bg-background text-foreground`}
       >
         <div className="flex min-h-screen flex-col">
           <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -37,7 +32,7 @@ export default function RootLayout({
                   href="https://github.com/goerll"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground h-10 w-10"
+                  className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors hover:bg-primary/10 hover:text-primary h-10 w-10 border border-border"
                   aria-label="GitHub"
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -52,7 +47,7 @@ export default function RootLayout({
                   href="https://linkedin.com/in/goerll"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground h-10 w-10"
+                  className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors hover:bg-primary/10 hover:text-primary h-10 w-10 border border-border"
                   aria-label="LinkedIn"
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -65,7 +60,7 @@ export default function RootLayout({
                 </a>
                 <a
                   href="mailto:goerll@pm.me"
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground h-10 w-10"
+                  className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors hover:bg-primary/10 hover:text-primary h-10 w-10 border border-border"
                   aria-label="Email"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

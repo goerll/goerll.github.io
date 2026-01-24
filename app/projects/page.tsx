@@ -41,12 +41,12 @@ export default function ProjectsPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <div className="relative w-full h-full rounded-lg shadow-lg transition hover:scale-110 ease-in-out overflow-hidden bg-gradient-to-br from-pink-500/80 via-purple-600/80 to-blue-500/80">
+                          <div className="relative w-full h-full border shadow-sm transition hover:scale-110 ease-in-out overflow-hidden bg-gradient-to-br from-pink-500/80 via-purple-600/80 to-blue-500/80">
                             <Image
                               alt="Drawtomata logo"
                               src="/assets/drawtomata_logo.png"
                               fill
-                              className="bg-white rounded-lg shadow-lg transition ease-in-out object-contain p-1"
+                              className="bg-white border shadow-sm transition ease-in-out object-contain p-1"
                             />
                           </div>
                         </a>
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
                           <div className="flex flex-row items-center gap-3 w-full justify-between">
                             <div className="flex flex-row items-center gap-2 flex-wrap">
                               <a
-                                className="font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-blue-500"
+                                className="font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-primary"
                                 href="https://drawtomata.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -71,7 +71,7 @@ export default function ProjectsPage() {
                                   href="https://drawtomata.com"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 transition"
+                                  className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 transition border border-border"
                                 >
                                   <ExternalLink className="w-3 h-3" />
                                   <span>drawtomata.com</span>
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
                             alt="Hello Algo logo"
                             src="/assets/hello_algo.png"
                             fill
-                            className="bg-white rounded-lg shadow-lg transition hover:scale-110 ease-in-out object-contain p-1"
+                            className="bg-white border shadow-sm transition hover:scale-110 ease-in-out object-contain p-1"
                           />
                         </a>
                       </div>
@@ -118,7 +118,7 @@ export default function ProjectsPage() {
                           <div className="flex flex-row items-center gap-3 w-full justify-between">
                             <div className="flex flex-row items-center gap-2 flex-wrap">
                               <a
-                                className="font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-blue-500"
+                                className="font-semibold sm:text-lg transition ease-in-out hover:scale-110 hover:text-primary"
                                 href="https://github.com/krahets/hello-algo"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -128,7 +128,7 @@ export default function ProjectsPage() {
                             </div>
                             <div className="flex flex-row items-center gap-2">
                               <div className="flex flex-row gap-1.5 flex-wrap items-center">
-                                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                <div className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border">
                                   <Star className="w-3 h-3" />
                                   <span>119k</span>
                                 </div>
