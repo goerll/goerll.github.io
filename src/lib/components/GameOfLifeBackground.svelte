@@ -235,6 +235,5 @@
 </script>
 
 <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
-	<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(92,255,166,0.12),transparent_40%),linear-gradient(180deg,rgba(10,18,17,0.24),rgba(10,18,17,0.72))]"></div>
 	<canvas bind:this={canvas} class="absolute inset-0 h-full w-full opacity-80"></canvas>
 </div>
