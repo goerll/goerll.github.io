@@ -1,15 +1,10 @@
 <script lang="ts">
 	import { ExternalLink, Star } from 'lucide-svelte';
-	import GameOfLifeBackground from '$lib/components/GameOfLifeBackground.svelte';
 	import StaticImage from '$lib/components/StaticImage.svelte';
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-card p-6 sm:p-12">
-	<div class="grid w-full max-w-7xl grid-cols-1 items-stretch gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,42rem)_minmax(0,1fr)]">
-		<div class="relative hidden min-h-[32rem] overflow-hidden rounded-md border border-border/70 bg-background xl:block">
-			<GameOfLifeBackground />
-		</div>
-
+<div class="relative min-h-screen">
+	<div class="relative z-10 mx-auto flex min-h-screen w-full max-w-[66rem] items-center px-6 py-24 sm:px-12 xl:px-12">
 		<div class="flex w-full flex-col gap-6 md:gap-10">
 			<nav aria-label="breadcrumb" class="hidden md:flex">
 				<ol class="flex flex-wrap items-center gap-2 text-sm">
@@ -65,7 +60,7 @@
 									href="https://drawtomata.com"
 									target="_blank"
 									rel="noopener noreferrer"
-									class="inline-flex items-center gap-1.5 bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition hover:bg-secondary/80 flex-shrink-0"
+									class="inline-flex items-center gap-1.5 rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition hover:bg-secondary/80 flex-shrink-0"
 								>
 									<ExternalLink class="w-3 h-3" />
 									<span>live</span>
@@ -111,7 +106,7 @@
 										Hello Algo
 									</a>
 								</div>
-								<div class="inline-flex items-center gap-1.5 bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground flex-shrink-0">
+								<div class="inline-flex items-center gap-1.5 rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground flex-shrink-0">
 									<Star class="w-3 h-3" />
 									<span>119k</span>
 								</div>
@@ -123,10 +118,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="relative hidden min-h-[32rem] overflow-hidden rounded-md border border-border/70 bg-background xl:block">
-			<GameOfLifeBackground />
 		</div>
 	</div>
 </div>
