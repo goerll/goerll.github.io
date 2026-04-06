@@ -36,6 +36,11 @@
 		font-family: var(--font-mono), ui-monospace, monospace;
 	}
 
+	body.painting-background {
+		user-select: none;
+		-webkit-user-select: none;
+	}
+
 	html, body {
 		overflow-y: scroll;
 		border-radius: 0;

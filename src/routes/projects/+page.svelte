@@ -26,7 +26,7 @@
 						side projects
 					</div>
 
-					<div class="flex flex-row gap-4 items-start rounded-md border border-border/70 bg-card p-4">
+					<div class="flex flex-row gap-4 items-start rounded-md border border-border/65 bg-card/52 p-4 backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.3),0_18px_48px_rgba(0,0,0,0.14)]">
 						<div class="relative h-14 w-14 flex-shrink-0">
 							<a
 								href="https://drawtomata.com"
@@ -78,7 +78,7 @@
 						open source contributions
 					</div>
 
-					<div class="flex flex-row gap-4 items-start rounded-md border border-border/70 bg-card p-4">
+					<div class="flex flex-row gap-4 items-start rounded-md border border-border/65 bg-card/52 p-4 backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.3),0_18px_48px_rgba(0,0,0,0.14)]">
 						<div class="relative h-14 w-14 flex-shrink-0">
 							<a
 								href="https://github.com/krahets/hello-algo"

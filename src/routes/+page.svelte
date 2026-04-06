@@ -5,7 +5,7 @@
 </script>
 
 <div class="relative flex flex-1 items-center justify-center overflow-hidden p-6 sm:p-12">
-	<div class="relative z-10 hidden max-w-4xl flex-col gap-8 rounded-md border border-border/70 bg-card px-10 py-9 text-card-foreground shadow-[0_0_0_1px_rgba(8,14,13,0.4),0_24px_80px_rgba(0,0,0,0.24)] md:flex md:flex-row lg:gap-12">
+	<div class="relative z-10 hidden max-w-4xl flex-col gap-8 rounded-md border border-border/65 bg-card/52 px-10 py-9 text-card-foreground backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.36),0_24px_80px_rgba(0,0,0,0.22)] md:flex md:flex-row lg:gap-12">
 		<div class="relative aspect-square md:h-[12em] lg:h-[14em] flex-shrink-0">
 			<StaticImage
 				alt="Profile picture"
@@ -96,7 +96,7 @@
 		</div>
 	</div>
 
-	<div class="relative z-10 flex w-full max-w-[22em] flex-col overflow-hidden rounded-md border border-border/70 bg-card shadow-[0_0_0_1px_rgba(8,14,13,0.4),0_20px_64px_rgba(0,0,0,0.22)] md:hidden">
+	<div class="relative z-10 flex w-full max-w-[22em] flex-col overflow-hidden rounded-md border border-border/65 bg-card/52 backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.36),0_20px_64px_rgba(0,0,0,0.22)] md:hidden">
 		<div class="relative w-full aspect-[4/5]">
 			<div class="h-full w-full z-0">
 				<StaticImage

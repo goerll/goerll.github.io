@@ -21,7 +21,7 @@
 				<h1 class="text-3xl font-bold tracking-tight">work</h1>
 
 				<div class="flex flex-col gap-6">
-					<div class="flex flex-row gap-4 items-center rounded-md border border-border/70 bg-card p-4">
+					<div class="flex flex-row gap-4 items-center rounded-md border border-border/65 bg-card/52 p-4 backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.3),0_18px_48px_rgba(0,0,0,0.14)]">
 						<div class="relative h-14 w-14 flex-shrink-0">
 							<StaticImage
 								alt="Mouts TI logo"
@@ -45,7 +45,7 @@
 				<h1 class="text-3xl font-bold tracking-tight">education</h1>
 
 				<div class="flex flex-col gap-6">
-					<div class="flex flex-row gap-4 items-center rounded-md border border-border/70 bg-card p-4">
+					<div class="flex flex-row gap-4 items-center rounded-md border border-border/65 bg-card/52 p-4 backdrop-blur-2xl shadow-[0_0_0_1px_rgba(8,14,13,0.3),0_18px_48px_rgba(0,0,0,0.14)]">
 						<div class="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-white p-1.5">
 							<StaticImage
 								alt="IFC logo"
