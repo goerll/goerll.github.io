@@ -29,6 +29,10 @@
 		let lastTimestamp = 0;
 		let crawlTime = 0;
 		let avoidRects: AvoidRect[] = [];
+		let avoidElements: HTMLElement[] = [];
+		let avoidRectsDirty = true;
+		let isAnimationActive = true;
+		let isDestroyed = false;
 		const pointer = {
 			x: 0,
 			y: 0,
@@ -80,8 +84,8 @@
 		}
 
 		function resize() {
-			const width = canvas.clientWidth || window.innerWidth;
-			const height = canvas.clientHeight || window.innerHeight;
+			const width = window.innerWidth;
+			const height = window.innerHeight;
 
 			cellSize = width < 640 ? 12 : width < 1024 ? 11 : 10;
 			columns = Math.ceil(width / cellSize);
@@ -98,6 +102,7 @@
 			nextDirectionX = new Float32Array(columns * rows);
 			nextDirectionY = new Float32Array(columns * rows);
 			seedField();
+			avoidRectsDirty = true;
 			updateAvoidRects();
 		}
 
@@ -106,10 +111,25 @@
 			resizeTimeout = setTimeout(resize, 100);
 		}
 
-		function updateAvoidRects() {
+		function refreshAvoidElements() {
+			avoidElements = Array.from(
+				document.querySelectorAll<HTMLElement>('[data-background-avoid]')
+			);
+			avoidRectsDirty = true;
+		}
+
+		function updateAvoidRects(force = false) {
+			if (!force && !avoidRectsDirty) return;
+
+			if (avoidElements.length === 0) {
+				avoidRects = [];
+				avoidRectsDirty = false;
+				return;
+			}
+
 			const bounds = canvas.getBoundingClientRect();
 			const padding = window.innerWidth < 768 ? 16 : 24;
-			avoidRects = Array.from(document.querySelectorAll<HTMLElement>('[data-background-avoid]'))
+			avoidRects = avoidElements
 				.map((element) => element.getBoundingClientRect())
 				.filter((rect) => rect.width > 0 && rect.height > 0)
 				.map((rect) => ({
@@ -118,6 +138,7 @@
 					top: rect.top - bounds.top - padding,
 					bottom: rect.bottom - bounds.top + padding
 				}));
+			avoidRectsDirty = false;
 		}
 
 		function getAvoidance(x: number, y: number) {
@@ -375,6 +396,7 @@
 		}
 
 		function animate(timestamp: number) {
+			if (!isAnimationActive || isDestroyed) return;
 			if (!lastTimestamp) lastTimestamp = timestamp;
 
 			const elapsed = timestamp - lastTimestamp;
@@ -393,29 +415,66 @@
 			animationFrame = window.requestAnimationFrame(animate);
 		}
 
+		function startAnimation() {
+			if (isDestroyed || isAnimationActive) return;
+			isAnimationActive = true;
+			lastTimestamp = 0;
+			animationFrame = window.requestAnimationFrame(animate);
+		}
+
+		function stopAnimation() {
+			if (!isAnimationActive) return;
+			isAnimationActive = false;
+			window.cancelAnimationFrame(animationFrame);
+		}
+
+		function handleVisibilityChange() {
+			if (document.hidden) {
+				stopAnimation();
+			} else {
+				startAnimation();
+			}
+		}
+
+		function handleScroll() {
+			avoidRectsDirty = true;
+		}
+
 		resize();
+		refreshAvoidElements();
 		animationFrame = window.requestAnimationFrame(animate);
+		const mutationObserver = new MutationObserver(refreshAvoidElements);
+		mutationObserver.observe(document.body, {
+			childList: true,
+			subtree: true,
+			attributes: true,
+			attributeFilter: ['data-background-avoid']
+		});
 		window.addEventListener('resize', queueResize);
 		window.addEventListener('pointermove', handlePointerMove);
 		window.addEventListener('pointerleave', handlePointerLeave);
 		window.addEventListener('pointerdown', handlePointerDown);
 		window.addEventListener('pointerup', handlePointerUp);
-		window.addEventListener('scroll', updateAvoidRects, { passive: true });
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		document.addEventListener('visibilitychange', handleVisibilityChange);
 
 		return () => {
-			window.cancelAnimationFrame(animationFrame);
+			isDestroyed = true;
+			stopAnimation();
+			mutationObserver.disconnect();
 			window.removeEventListener('resize', queueResize);
 			window.removeEventListener('pointermove', handlePointerMove);
 			window.removeEventListener('pointerleave', handlePointerLeave);
 			window.removeEventListener('pointerdown', handlePointerDown);
 			window.removeEventListener('pointerup', handlePointerUp);
-			window.removeEventListener('scroll', updateAvoidRects);
+			window.removeEventListener('scroll', handleScroll);
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
 			document.body.classList.remove('painting-background');
 			clearTimeout(resizeTimeout);
 		};
 	});
 </script>
 
-<div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
-	<canvas bind:this={canvas} class="absolute inset-0 h-full w-full opacity-90"></canvas>
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden">
+	<canvas bind:this={canvas} class="absolute inset-0 h-screen w-screen opacity-90"></canvas>
 </div>

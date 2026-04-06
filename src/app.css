@@ -46,8 +46,4 @@
 		border-radius: 0;
 		background: hsl(var(--background));
 	}
-
-	html:has(main > .content-height-suitable) {
-		overflow-y: hidden;
-	}
 }
