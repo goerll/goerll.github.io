@@ -5,18 +5,6 @@
 <div class="relative min-h-screen">
 	<div class="relative z-10 mx-auto flex min-h-screen w-full max-w-[66rem] items-center px-6 py-24 sm:px-12 xl:px-12">
 		<div class="flex w-full flex-col gap-6 md:gap-10">
-			<nav aria-label="breadcrumb" class="hidden md:flex">
-				<ol class="flex flex-wrap items-center gap-2 text-sm">
-					<li class="inline-flex items-center gap-2 transition-colors hover:text-primary">
-						<a href="/" class="transition-colors hover:text-primary">home</a>
-					</li>
-					<li class="text-muted-foreground">/</li>
-					<li class="inline-flex items-center gap-2 transition-colors">
-						<span class="text-foreground">work</span>
-					</li>
-				</ol>
-			</nav>
-
 			<div class="flex flex-col gap-8 w-full">
 				<h1 class="text-3xl font-bold tracking-tight">work</h1>
 

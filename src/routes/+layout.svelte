@@ -16,7 +16,7 @@
 	}
 
 	function usesSideBands(pathname: string): boolean {
-		return pathname === '/work' || pathname === '/projects';
+		return false;
 	}
 
 	const sideBandCenterWidth = '66rem';

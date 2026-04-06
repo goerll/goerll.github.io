@@ -7,6 +7,13 @@
 		const context = canvas.getContext('2d');
 		if (!context) return;
 
+		type AvoidRect = {
+			left: number;
+			right: number;
+			top: number;
+			bottom: number;
+		};
+
 		let animationFrame = 0;
 		let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
 		let columns = 0;
@@ -21,6 +28,7 @@
 		let nextDirectionY = new Float32Array();
 		let lastTimestamp = 0;
 		let crawlTime = 0;
+		let avoidRects: AvoidRect[] = [];
 		const pointer = {
 			x: 0,
 			y: 0,
@@ -90,11 +98,45 @@
 			nextDirectionX = new Float32Array(columns * rows);
 			nextDirectionY = new Float32Array(columns * rows);
 			seedField();
+			updateAvoidRects();
 		}
 
 		function queueResize() {
 			clearTimeout(resizeTimeout);
 			resizeTimeout = setTimeout(resize, 100);
+		}
+
+		function updateAvoidRects() {
+			const bounds = canvas.getBoundingClientRect();
+			const padding = window.innerWidth < 768 ? 16 : 24;
+			avoidRects = Array.from(document.querySelectorAll<HTMLElement>('[data-background-avoid]'))
+				.map((element) => element.getBoundingClientRect())
+				.filter((rect) => rect.width > 0 && rect.height > 0)
+				.map((rect) => ({
+					left: rect.left - bounds.left - padding,
+					right: rect.right - bounds.left + padding,
+					top: rect.top - bounds.top - padding,
+					bottom: rect.bottom - bounds.top + padding
+				}));
+		}
+
+		function getAvoidance(x: number, y: number) {
+			if (avoidRects.length === 0) return 1;
+
+			const px = x * cellSize + cellSize / 2;
+			const py = y * cellSize + cellSize / 2;
+			let factor = 1;
+			const falloff = cellSize * 4.5;
+
+			for (const rect of avoidRects) {
+				const dx = Math.max(rect.left - px, 0, px - rect.right);
+				const dy = Math.max(rect.top - py, 0, py - rect.bottom);
+				const distance = Math.hypot(dx, dy);
+				const localFactor = clamp(distance / falloff, 0.06, 1);
+				factor = Math.min(factor, localFactor);
+			}
+
+			return factor;
 		}
 
 		function getPointerInfluence(x: number, y: number) {
@@ -158,11 +200,12 @@
 					const cellIndex = index(x, y);
 					const current = intensity[cellIndex];
 					const pointerInfluence = getPointerInfluence(x, y);
+					const avoidance = getAvoidance(x, y);
 					const structure =
 						Math.sin(x * 0.038 + crawlTime * 0.22) +
 						Math.cos(y * 0.032 - crawlTime * 0.18) +
 						Math.sin((x - y) * 0.017);
-					const source = Math.max(0, structure - 2.15) * 0.03 + pointerInfluence * 0.018;
+					const source = (Math.max(0, structure - 2.15) * 0.03 + pointerInfluence * 0.018) * avoidance;
 					const total = current + source;
 					const dirX = directionX[cellIndex];
 					const dirY = directionY[cellIndex];
@@ -205,6 +248,7 @@
 					const diagonalC = nextIntensity[index((x - 1 + columns) % columns, (y + 1) % rows)];
 					const diagonalD = nextIntensity[index((x + 1) % columns, (y + 1) % rows)];
 					const pointerInfluence = getPointerInfluence(x, y);
+					const avoidance = getAvoidance(x, y);
 					const localAverage =
 						center * 0.5 +
 						(left + right + up + down) * 0.095 +
@@ -217,7 +261,7 @@
 					const overlapBoost = Math.max(0, center - 0.15) * 0.12;
 
 					bufferIntensity[cellIndex] = clamp(
-						localAverage * 0.986 + replenish + pointerPulse + overlapBoost,
+						(localAverage * 0.986 + replenish + pointerPulse + overlapBoost) * (0.2 + avoidance * 0.8),
 						0,
 						1
 					);
@@ -270,7 +314,7 @@
 
 			for (let y = 0; y < rows; y += 1) {
 				for (let x = 0; x < columns; x += 1) {
-					const value = intensity[index(x, y)];
+					const value = intensity[index(x, y)] * getAvoidance(x, y);
 					const pointerInfluence = getPointerInfluence(x, y);
 					if (value < 0.06 && pointerInfluence < 0.05) continue;
 
@@ -343,6 +387,7 @@
 			}
 			pointer.strength += (pointer.targetStrength - pointer.strength) * 0.1;
 
+			updateAvoidRects();
 			simulate(delta);
 			draw();
 			animationFrame = window.requestAnimationFrame(animate);
@@ -355,6 +400,7 @@
 		window.addEventListener('pointerleave', handlePointerLeave);
 		window.addEventListener('pointerdown', handlePointerDown);
 		window.addEventListener('pointerup', handlePointerUp);
+		window.addEventListener('scroll', updateAvoidRects, { passive: true });
 
 		return () => {
 			window.cancelAnimationFrame(animationFrame);
@@ -363,6 +409,7 @@
 			window.removeEventListener('pointerleave', handlePointerLeave);
 			window.removeEventListener('pointerdown', handlePointerDown);
 			window.removeEventListener('pointerup', handlePointerUp);
+			window.removeEventListener('scroll', updateAvoidRects);
 			document.body.classList.remove('painting-background');
 			clearTimeout(resizeTimeout);
 		};
