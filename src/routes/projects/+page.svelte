@@ -134,7 +134,7 @@
 									</a>
 								</div>
 								<div class="text-muted-foreground text-sm leading-relaxed">
-									Real-time maze generation and pathfinding visualizer built for OOP II, designed to
+									Real-time maze generation and pathfinding visualizer, designed to
 									make graph traversal algorithms feel concrete through side-by-side interactive
 									comparison.
 								</div>

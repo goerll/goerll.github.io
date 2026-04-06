@@ -63,7 +63,7 @@
 						</svg>
 					</a>
 					<a
-						href="https://linkedin.com/in/goerll"
+						href="https://www.linkedin.com/in/estevaogoerll/"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="inline-flex items-center justify-center text-muted-foreground hover:text-primary transition-colors h-9 w-9"
@@ -78,7 +78,7 @@
 						</svg>
 					</a>
 					<a
-						href="mailto:goerll@pm.me"
+						href="mailto:estevaogoerlln@gmail.com"
 						class="inline-flex items-center justify-center text-muted-foreground hover:text-primary transition-colors h-9 w-9"
 						aria-label="Email"
 					>
@@ -149,7 +149,7 @@
 					</svg>
 				</a>
 				<a
-					href="https://linkedin.com/in/goerll"
+					href="https://www.linkedin.com/in/estevaogoerll/"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center justify-center text-muted-foreground hover:text-primary transition-colors h-9 w-9"
@@ -164,7 +164,7 @@
 					</svg>
 				</a>
 				<a
-					href="mailto:goerll@pm.me"
+					href="mailto:estevaogoerlln@gmail.com"
 					class="inline-flex items-center justify-center text-muted-foreground hover:text-primary transition-colors h-9 w-9"
 					aria-label="Email"
 				>
